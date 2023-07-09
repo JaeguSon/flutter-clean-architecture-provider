@@ -14,28 +14,18 @@ class RouteNavigator {
     return _instance;
   }
 
-  _getPageFrom({required String name}) {
-    final route = navigationMap[name];
-
-    if (route == null) {
-      return const SplashPage();
-    }
-
-    return route;
-  }
-
   toPageAndRoot(BuildContext context, {required String to}) {
-    Navigator.pushAndRemoveUntil(
+    Navigator.pushNamedAndRemoveUntil(
       context,
-      PageRouteBuilder(pageBuilder: (_, __, ___) => _getPageFrom(name: to)),
+      to,
       (route) => false,
     );
   }
 
   toPage(BuildContext context, {required String to}) {
-    Navigator.push(
+    Navigator.pushNamed(
       context,
-      PageRouteBuilder(pageBuilder: (_, __, ___) => _getPageFrom(name: to)),
+      to,
     );
   }
 
